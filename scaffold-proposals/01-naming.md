@@ -94,13 +94,56 @@ MCP* is a strong alternative if we want the name to lean into the "brain" motif.
 - **Internal cross-cutting components** keep distinct, memorable names so they
   are easy to reference in reviews: **StateGuard**, **StateJournal**.
 
-## Decisions this document asks for
+## Open questions & answers
 
-> **D1a:** What is the **core mechanism's** name? (Recommendation: *StateLink
-> Core*; fallback *Activator Core*.)
+Naming is the decision most likely to be talked about over time, so this section is
+deliberately roomy. Answer in place per the
+[README convention](README.md#how-to-answer-these-decisions-are-a-conversation),
+and use the **name workshop** below to park candidates before committing.
+
+### Name workshop (ongoing)
+
+Add proposals here as they come up; promote the winner into the answer block for the
+relevant decision once there is agreement. Nothing here is binding.
+
+| Slot | Proposed name | Proposed by / date | For (+) / against (−) | Status |
+| --- | --- | --- | --- | --- |
+| Core mechanism | _(e.g. StateLink Core)_ | _TBD_ | _TBD_ | candidate |
+| MCP surface | _(e.g. StateLink MCP Server)_ | _TBD_ | _TBD_ | candidate |
+| _(add rows for any surface as it is named)_ | | | | |
+
+### Decisions
+
+> **Q (D1a):** What is the **core mechanism's** name?
 >
-> **D1b:** What is the **MCP surface's** name? (Recommendation: *StateLink MCP
-> Server*; alt *Filesystem Cortex MCP*.)
+> **Recommendation:** *StateLink Core* (fallback: *Activator Core*).
 >
-> **D1c:** Do we adopt the `<Core> <Surface>` naming convention and the
-> executable naming scheme above?
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(record candidates considered and why the chosen name won)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D1b):** What is the **MCP surface's** name?
+>
+> **Recommendation:** *StateLink MCP Server* (alternative: *Filesystem Cortex MCP*).
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D1c):** Do we adopt the `<Core> <Surface>` naming convention and the
+> executable naming scheme (`statelinkctl`, `statelink-mcp`, …) above?
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_

@@ -92,13 +92,43 @@ A clean division:
   core does not implement auth; it trusts the surface to have authenticated and
   to pass the read/write intent honestly.
 
-## Decisions this document asks for
+## Open questions & answers
 
-> **D6a:** Do we make StateGuard a mandatory in-core gate that **no** surface can
-> bypass (surfaces may only add restrictions)?
+Answer in place per the
+[README convention](README.md#how-to-answer-these-decisions-are-a-conversation).
+
+> **Q (D6a):** Do we make StateGuard a mandatory in-core gate that **no** surface
+> can bypass (surfaces may only add restrictions)?
 >
-> **D6b:** Do we adopt StateJournal as a first-class core component from the
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D6b):** Do we adopt StateJournal as a first-class core component from the
 > start (vs. deferring audit/rollback)?
 >
-> **D6c:** Do we confirm the split: safety/invariants in the core (StateGuard),
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D6c):** Do we confirm the split: safety/invariants in the core (StateGuard),
 > authn/authz in the surfaces?
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_

@@ -110,10 +110,31 @@ the-brain-actuator/
 - **Capability negotiation** before attempting operations.
 - **No network in the core**; network lives only in surfaces.
 
-## Decisions this document asks for
+## Open questions & answers
 
-> **D4a:** Do we accept the monorepo `core/` + `surfaces/*` layout (one package
+Answer in place per the
+[README convention](README.md#how-to-answer-these-decisions-are-a-conversation).
+
+> **Q (D4a):** Do we accept the monorepo `core/` + `surfaces/*` layout (one package
 > per surface, strict one-way dependencies)?
 >
-> **D4b:** Do we accept the build/test posture (core tested against fixtures;
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D4b):** Do we accept the build/test posture (core tested against fixtures;
 > surfaces tested as thin translators)?
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_

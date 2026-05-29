@@ -118,13 +118,45 @@ A clean taxonomy here is what lets every surface translate core results
 - **Adapters are small and fixture-tested** against captures from the discovery
   bootstrap workflow.
 
-## Decisions this document asks for
+## Open questions & answers
 
-> **D2a:** Do we accept the capability model (handle + mode + declared adapter
+Answer in place per the
+[README convention](README.md#how-to-answer-these-decisions-are-a-conversation).
+Because this contract ripples through every surface, record the reasoning, not just
+the verdict.
+
+> **Q (D2a):** Do we accept the capability model (handle + mode + declared adapter
 > capabilities + mandatory negotiation) as the single contract for all surfaces?
 >
-> **D2b:** Do we accept the shared operation lifecycle and the
-> error/refusal taxonomy as the cross-surface standard?
+> **Recommendation:** Yes.
 >
-> **D2c:** Do we accept "one writer per brain, many readers" as the concurrency
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D2b):** Do we accept the shared operation lifecycle and the error/refusal
+> taxonomy as the cross-surface standard?
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+
+> **Q (D2c):** Do we accept "one writer per brain, many readers" as the concurrency
 > baseline?
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
