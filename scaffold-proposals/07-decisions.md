@@ -1,13 +1,19 @@
 # 07 — Decisions to resolve
 
-This is the worksheet. Each decision below is referenced from an earlier document
-and has options plus a recommendation. The intent is to read the package, then
-fill in the **Outcome** column and record a date/owner so the scaffold can move
-from proposal to plan.
+This is the worksheet — the **single at-a-glance status table** for the whole
+package. Each decision below is referenced from an earlier document and has options
+plus a recommendation. The intent is to read the package, discuss each question
+where it lives (every document now has an **Open questions & answers** section per
+the [README convention](README.md#how-to-answer-these-decisions-are-a-conversation)),
+then mirror the result here so the status is visible in one place.
+
+Decisions are expected to settle **over time, not in one sitting** — leave the
+`Outcome` as `_TBD_` until there is genuine agreement, and capture the back-and-forth
+in the **per-decision discussion log** below the table.
 
 ## Decision table
 
-| ID | Decision | Options | Recommendation | Outcome |
+| ID | Decision | Options | Recommendation | Outcome (date · owner) |
 | --- | --- | --- | --- | --- |
 | **D0** | Adopt "one core coupler, many interfaces"? | yes / no | **Yes** | _TBD_ |
 | **D1a** | Name of the core mechanism | StateLink Core / Activator Core / State Coupler / Cortex | **StateLink Core** (fallback: Activator Core) | _TBD_ |
@@ -26,6 +32,35 @@ from proposal to plan.
 | **D6b** | StateJournal a first-class core component from day one | yes / no | **Yes** | _TBD_ |
 | **D6c** | Safety in core, authn/authz in surfaces | yes / no | **Yes** | _TBD_ |
 | **D7** | Core runtime/language | see below | **Defer** until after discovery (Phase 1) | _TBD_ |
+
+## Per-decision discussion log
+
+Use this space to talk a decision through before it lands in the table above. Keep
+each entry's running notes here; once `Decided`, copy the verdict into the `Outcome`
+column and (where the source document has its own block) into that document too.
+
+> **D0 — adopt the concept?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D1a — core name?** Answer: _(unanswered)_ · Candidates & rationale: _(use the
+> name workshop in [01-naming.md](01-naming.md))_
+>
+> **D1b — MCP surface name?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D1c — naming convention?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D2a/D2b/D2c — core contract?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D3 — launch set?** Answer: _(unanswered)_ · Notes: _(use the per-interface table
+> in [03-interfaces.md](03-interfaces.md))_
+>
+> **D4a/D4b — layout & test posture?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D5a/D5b/D5c — MCP posture?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D6a/D6b/D6c — safety & versioning?** Answer: _(unanswered)_ · Notes: _(add dated points)_
+>
+> **D7 — runtime/language?** Answer: _(unanswered)_ · Notes: _(record the discovery
+> evidence that ends up favouring an ecosystem)_
 
 ## D7 — runtime/language (called out separately)
 

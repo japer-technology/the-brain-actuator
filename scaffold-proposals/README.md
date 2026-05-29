@@ -77,6 +77,41 @@ have five minutes, read [00-concept.md](00-concept.md) and the decision table in
 6. **Ratify the shared safety/versioning posture** (06).
 7. **Resolve the open decisions** (07) and record the outcome.
 
+## How to answer (these decisions are a conversation)
+
+This package is deliberately written as **questions with room for answers**, not as
+settled conclusions. Naming, scope, and surface selection are genuinely open, and
+the right call for some of them (the core's name is the canonical example) may only
+emerge after discussion over days or weeks.
+
+So every document ends in an **Open questions & answers** section, and each open
+question uses the same fill-in-the-blank block. Answer in place, directly under the
+question, and leave a dated trail so the reasoning survives:
+
+```markdown
+> **Q (Dxx):** <the question being asked>
+>
+> **Recommendation:** <the proposal's suggested answer, for reference>
+>
+> **Answer:** _(unanswered)_            ← replace with the chosen answer
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
+```
+
+Conventions for using these blocks:
+
+- **Don't delete the question or the recommendation.** Fill in `Answer`, append to
+  `Discussion`, and complete `Decided` when it is settled. The history is the point.
+- **Leave it `_(unanswered)_` until there is real agreement.** A blank answer is a
+  valid, honest state; a guessed one is not.
+- **Capture disagreement in `Discussion`.** Competing options and the reason one
+  won are more valuable later than a bare verdict.
+- **Mirror the outcome into [07-decisions.md](07-decisions.md)** once `Decided`,
+  so the worksheet stays the single at-a-glance status table.
+
 ## Guiding constraints carried over from the project
 
 These are non-negotiable inheritances from the existing project docs and apply to

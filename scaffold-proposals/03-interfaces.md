@@ -114,8 +114,33 @@ workflow), adding the **MCP Server** as soon as the contract stabilizes since it
 is the project's flagship motivation. REST + Console follow once writes are
 proven. Everything else is demand-driven.
 
-## Decision this document asks for
+## Open questions & answers
 
-> **D3:** Which interfaces are in the **launch set**, which are **soon**, and
-> which are **later/never**? (Recommendation: launch = SDK + CLI + MCP; soon =
-> REST + Console; rest = later.)
+Answer in place per the
+[README convention](README.md#how-to-answer-these-decisions-are-a-conversation).
+For the launch-set question it helps to record the tier chosen **per interface**, so
+the table below leaves room for that alongside the headline decision.
+
+> **Q (D3):** Which interfaces are in the **launch set**, which are **soon**, and
+> which are **later/never**?
+>
+> **Recommendation:** launch = SDK + CLI + MCP; soon = REST + Console; rest = later.
+>
+> **Answer:** _(unanswered)_
+>
+> **Per-interface outcome (fill in as decided):**
+>
+> | Interface | Recommended tier | Chosen tier | Notes |
+> | --- | --- | --- | --- |
+> | SDK | Launch | _TBD_ | |
+> | CLI | Launch | _TBD_ | |
+> | MCP Server | Launch | _TBD_ | |
+> | REST Gateway | Soon | _TBD_ | |
+> | Console (Web UI) | Soon | _TBD_ | |
+> | TUI / Live Bus / gRPC / GraphQL / VirtualFS / Version Layer / Query / Webhooks | Later | _TBD_ | |
+> | Extension API | Cross-cutting | _TBD_ | |
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_

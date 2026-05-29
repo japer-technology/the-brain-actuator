@@ -96,10 +96,20 @@ To keep the split honest, the core deliberately excludes:
 - It is **not** a rewrite of `docs/`. It is a packaging/surfacing layer above the
   already-documented library design.
 
-## Decision this document asks for
+## Open questions & answers
 
-> **D0:** Do we adopt the "one core coupler, many interfaces" separation as the
+Answer in place using the convention in the [README](README.md#how-to-answer-these-decisions-are-a-conversation).
+If **D0** lands on **yes**, proceed to naming ([01](01-naming.md)) and the core
+contract ([02](02-core-coupler.md)); if **no**, the remaining documents do not apply.
+
+> **Q (D0):** Do we adopt the "one core coupler, many interfaces" separation as the
 > scaffolding principle for the project?
-
-If **yes**, proceed to naming ([01](01-naming.md)) and the core contract
-([02](02-core-coupler.md)). If **no**, the remaining documents do not apply.
+>
+> **Recommendation:** Yes.
+>
+> **Answer:** _(unanswered)_
+>
+> **Discussion:**
+> - _(add dated notes, alternatives, and objections as the conversation evolves)_
+>
+> **Decided:** _date · owner · outcome — TBD_
