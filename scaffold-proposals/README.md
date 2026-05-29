@@ -58,6 +58,7 @@ agents, and other software.
 | [05-mcp-server.md](05-mcp-server.md) | Deep dive on the MCP server surface (the flagship agent interface) |
 | [06-safety-and-versioning.md](06-safety-and-versioning.md) | The safety/policy layer and the audit/version layer, shared by all surfaces |
 | [07-decisions.md](07-decisions.md) | The explicit decisions to be made, with options and a recommendation each |
+| [QUESTIONS.md](QUESTIONS.md) | **The one place to answer all the questions.** |
 
 Suggested reading order: **00 → 01 → 02 → 03 → 04 → 05 → 06 → 07**. If you only
 have five minutes, read [00-concept.md](00-concept.md) and the decision table in
@@ -77,40 +78,17 @@ have five minutes, read [00-concept.md](00-concept.md) and the decision table in
 6. **Ratify the shared safety/versioning posture** (06).
 7. **Resolve the open decisions** (07) and record the outcome.
 
-## How to answer (these decisions are a conversation)
+## How to answer
 
-This package is deliberately written as **questions with room for answers**, not as
-settled conclusions. Naming, scope, and surface selection are genuinely open, and
-the right call for some of them (the core's name is the canonical example) may only
-emerge after discussion over days or weeks.
+All the questions live in one file: **[QUESTIONS.md](QUESTIONS.md)**. Read the
+proposal documents, then fill in the `Answer:` line under each question there. Each
+question also has a `Suggested:` default you can simply accept if you agree.
 
-So every document ends in an **Open questions & answers** section, and each open
-question uses the same fill-in-the-blank block. Answer in place, directly under the
-question, and leave a dated trail so the reasoning survives:
+That's the whole workflow:
 
-```markdown
-> **Q (Dxx):** <the question being asked>
->
-> **Recommendation:** <the proposal's suggested answer, for reference>
->
-> **Answer:** _(unanswered)_            ← replace with the chosen answer
->
-> **Discussion:**
-> - _(add dated notes, alternatives, and objections as the conversation evolves)_
->
-> **Decided:** _date · owner · outcome — TBD_
-```
-
-Conventions for using these blocks:
-
-- **Don't delete the question or the recommendation.** Fill in `Answer`, append to
-  `Discussion`, and complete `Decided` when it is settled. The history is the point.
-- **Leave it `_(unanswered)_` until there is real agreement.** A blank answer is a
-  valid, honest state; a guessed one is not.
-- **Capture disagreement in `Discussion`.** Competing options and the reason one
-  won are more valuable later than a bare verdict.
-- **Mirror the outcome into [07-decisions.md](07-decisions.md)** once `Decided`,
-  so the worksheet stays the single at-a-glance status table.
+1. The proposal is presented in the numbered documents (00 → 07).
+2. You answer every question in [QUESTIONS.md](QUESTIONS.md).
+3. When all answers are filled in, the proposal is finalized.
 
 ## Guiding constraints carried over from the project
 

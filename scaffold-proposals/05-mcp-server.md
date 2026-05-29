@@ -92,72 +92,7 @@ taxonomy be explicit and machine-readable. If the core contract is clean enough
 for an autonomous agent to use safely, it is clean enough for every other
 surface.
 
-## Open questions specific to MCP
+## Open questions
 
-These are genuinely undecided; answer in place per the
-[README convention](README.md#how-to-answer-these-decisions-are-a-conversation) as
-experience with the surface accrues.
-
-> **Q (MCP-1):** Do we expose **prompts** (e.g. "summarize this thought's subtree")
-> or keep the surface to resources + tools only?
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes as the conversation evolves)_
-
-> **Q (MCP-2):** What is the **paging/streaming** strategy for very large graphs
-> exposed as resources?
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes as the conversation evolves)_
-
-> **Q (MCP-3):** For remote MCP, what **auth** model (token, mTLS) do we require
-> before any write tools are even registered?
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes as the conversation evolves)_
-
-## Decisions: open questions & answers
-
-Answer in place per the
-[README convention](README.md#how-to-answer-these-decisions-are-a-conversation).
-
-> **Q (D5a):** Is the MCP server in the launch set?
->
-> **Recommendation:** Yes.
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes, alternatives, and objections as the conversation evolves)_
->
-> **Decided:** _date · owner · outcome — TBD_
-
-> **Q (D5b):** Do we accept "read-only by default; write tools only registered in an
-> explicit write-enabled mode" as the MCP safety posture?
->
-> **Recommendation:** Yes.
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes, alternatives, and objections as the conversation evolves)_
->
-> **Decided:** _date · owner · outcome — TBD_
-
-> **Q (D5c):** Do we start with **stdio-only** transport and defer remote/networked
-> MCP (with its auth requirements) to later?
->
-> **Recommendation:** Yes.
->
-> **Answer:** _(unanswered)_
->
-> **Discussion:**
-> - _(add dated notes, alternatives, and objections as the conversation evolves)_
->
-> **Decided:** _date · owner · outcome — TBD_
+The MCP decisions (**D5a**, **D5b**, **D5c**) and the MCP-specific questions
+(**MCP-1**, **MCP-2**, **MCP-3**) are answered in [QUESTIONS.md](QUESTIONS.md).
