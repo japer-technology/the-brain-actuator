@@ -4,6 +4,11 @@ import Database from "better-sqlite3";
 import { unzipSync, strFromU8 } from "fflate";
 import type { ProbedColumn, ProbedEntity, SchemaProbe } from "./report.js";
 
+/** Quote a SQLite identifier safely (doubling embedded double-quotes). */
+function quoteIdent(name: string): string {
+  return `"${name.replace(/"/g, '""')}"`;
+}
+
 /**
  * Probe a SQLite brain's actual schema from `sqlite_master` + `PRAGMA
  * table_info` — never hard-coded (see `docs/discovery.md` Step 3). Opens the
@@ -18,7 +23,7 @@ export function probeSqlite(dbPath: string): SchemaProbe {
       .all() as { name: string }[];
     const entities: ProbedEntity[] = tables.map(({ name }) => {
       const columns = (
-        db.prepare(`PRAGMA table_info(${JSON.stringify(name)})`).all() as {
+        db.prepare(`PRAGMA table_info(${quoteIdent(name)})`).all() as {
           name: string;
           type: string;
           pk: number;
@@ -33,7 +38,7 @@ export function probeSqlite(dbPath: string): SchemaProbe {
         }),
       );
       const rowCount = (
-        db.prepare(`SELECT COUNT(*) AS n FROM ${JSON.stringify(name)}`).get() as { n: number }
+        db.prepare(`SELECT COUNT(*) AS n FROM ${quoteIdent(name)}`).get() as { n: number }
       ).n;
       return { name, columns, rowCount };
     });

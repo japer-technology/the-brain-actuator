@@ -24,6 +24,11 @@ const NOTE_FORMAT: Record<string, NoteFormat> = {
   richtext: "richtext",
 };
 
+/** Quote a SQLite identifier safely (doubling embedded double-quotes). */
+function quoteIdent(name: string): string {
+  return `"${name.replace(/"/g, '""')}"`;
+}
+
 interface RawRow {
   [column: string]: unknown;
 }
@@ -61,7 +66,7 @@ export class SqliteAdapter implements StorageAdapter {
 
   private all(table: string): RawRow[] {
     if (!this.tables.has(table)) return [];
-    return this.db.prepare(`SELECT * FROM ${table}`).all() as RawRow[];
+    return this.db.prepare(`SELECT * FROM ${quoteIdent(table)}`).all() as RawRow[];
   }
 
   read(): BrainData {
