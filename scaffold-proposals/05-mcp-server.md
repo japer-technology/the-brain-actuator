@@ -5,7 +5,7 @@ and (carefully) mutate a brain. This document details how that surface maps onto
 the core coupler ([02-core-coupler.md](02-core-coupler.md)) **without** holding
 any storage logic of its own.
 
-> Name per [01-naming.md](01-naming.md): recommended **StateLink MCP Server**
+> Name per [01-naming.md](01-naming.md): recommended **TheLocalBrain MCP Server**
 > (visceral alternative: *Filesystem Cortex MCP*).
 
 ## What MCP gives us
@@ -17,7 +17,7 @@ The [Model Context Protocol](https://modelcontextprotocol.io) defines a
 - **Tools** — callable operations the model can invoke (with typed inputs).
 - **Prompts** — optional reusable prompt templates.
 
-The StateLink MCP Server is an MCP **server**: it advertises resources and tools
+The TheLocalBrain MCP Server is an MCP **server**: it advertises resources and tools
 that are thin wrappers over core operations, and it relays the core's results and
 refusals back over JSON-RPC.
 
@@ -53,7 +53,7 @@ Split into two tiers, gated separately:
 
 > The write tools are **not registered at all** unless the operator starts the
 > server in a write-enabled mode, and even then each call passes through the full
-> StateGuard precondition pipeline in the core. The MCP server never writes
+> TheLocalBrainGuard precondition pipeline in the core. The MCP server never writes
 > files itself.
 
 ## Safety posture specific to agents
@@ -62,7 +62,7 @@ Agents are the consumer most likely to attempt writes autonomously, so this
 surface adds *surface-level* guardrails **on top of** (never instead of) the
 core's guards:
 
-1. **Read-only by default deployment.** The default `statelink-mcp` start mode
+1. **Read-only by default deployment.** The default `thelocalbrain-mcp` start mode
    exposes only resources and read tools.
 2. **Two-step writes via negotiation.** A write tool should require the agent to
    first observe `get_capabilities`; the core still re-checks every precondition,
@@ -71,7 +71,7 @@ core's guards:
    ([02-core-coupler.md](02-core-coupler.md)) maps to MCP tool errors verbatim —
    `locked`, `read-only`, `not-allowed`, `validation-failed` (rolled back), etc.
    The agent must never see a swallowed failure presented as success.
-4. **Journaled attribution.** Every write tool call is recorded in StateJournal
+4. **Journaled attribution.** Every write tool call is recorded in TheLocalBrainJournal
    with the session identity (see [06-safety-and-versioning.md](06-safety-and-versioning.md)).
 5. **No network beyond MCP.** The server embeds the core in-process; it does not
    reach the network for anything except serving MCP itself.

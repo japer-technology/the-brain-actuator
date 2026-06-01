@@ -16,24 +16,24 @@ Priority legend:
 
 | # | Interface | Name | Serves | Read/Write | Priority |
 | --- | --- | --- | --- | --- | --- |
-| 1 | SDK | StateLink SDK | App developers | both | **Launch** |
-| 2 | CLI | statelinkctl | Devs/admins | both | **Launch** |
-| 3 | MCP Server | StateLink MCP Server | AI agents/tools | both | **Launch** |
-| 4 | REST API | StateLink REST Gateway | Apps, dashboards, scripts | both | Soon |
-| 5 | Web UI | StateLink Console | Humans | both | Soon |
-| 6 | TUI | StateLink TUI | Humans (terminal) | both | Later |
-| 7 | WebSocket | StateLink Live Bus | Live consumers | read/stream | Later |
-| 8 | gRPC | StateLink RPC Bridge | Internal systems | both | Later |
+| 1 | SDK | TheLocalBrain SDK | App developers | both | **Launch** |
+| 2 | CLI | thelocalbrainctl | Devs/admins | both | **Launch** |
+| 3 | MCP Server | TheLocalBrain MCP Server | AI agents/tools | both | **Launch** |
+| 4 | REST API | TheLocalBrain REST Gateway | Apps, dashboards, scripts | both | Soon |
+| 5 | Web UI | TheLocalBrain Console | Humans | both | Soon |
+| 6 | TUI | TheLocalBrain TUI | Humans (terminal) | both | Later |
+| 7 | WebSocket | TheLocalBrain Live Bus | Live consumers | read/stream | Later |
+| 8 | gRPC | TheLocalBrain RPC Bridge | Internal systems | both | Later |
 | 9 | GraphQL | StateGraph Interface | Flexible queriers | read | Later |
-| 10 | FUSE mount | StateLink VirtualFS | Filesystem-native tools | read (write later) | Later |
-| 11 | Git-like layer | StateLink Version Layer | Auditors, power users | read | Later |
+| 10 | FUSE mount | TheLocalBrain VirtualFS | Filesystem-native tools | read (write later) | Later |
+| 11 | Git-like layer | TheLocalBrain Version Layer | Auditors, power users | read | Later |
 | 12 | SQL-like query | StateQuery Engine | Analysts | read | Later |
-| 13 | Webhooks | StateLink Event Hooks | Integrations | notify | Later |
-| 14 | Plugin API | StateLink Extension API | Extenders | n/a | Cross-cutting |
+| 13 | Webhooks | TheLocalBrain Event Hooks | Integrations | notify | Later |
+| 14 | Plugin API | TheLocalBrain Extension API | Extenders | n/a | Cross-cutting |
 
 ## Launch set (proposed)
 
-### 1. StateLink SDK — *the core, packaged*
+### 1. TheLocalBrain SDK — *the core, packaged*
 - **What:** the core coupler exposed as a library in one or more languages.
 - **Why launch:** it is essentially the core itself; every out-of-process surface
   embeds it, so it must exist first. It is also the cheapest surface — minimal
@@ -41,16 +41,16 @@ Priority legend:
 - **Risk:** lowest. Read paths are non-destructive; writes go through the same
   guards as everything else.
 
-### 2. statelinkctl — *CLI*
+### 2. thelocalbrainctl — *CLI*
 - **What:** `discover`, `read`/`export`, and (opt-in) the allow-listed mutations,
   driven from the shell. In-process; no network.
 - **Why launch:** it is the primary tool for the discovery bootstrap workflow and
   for operators verifying behavior against real brains. Excellent for testing the
   core contract end to end.
 - **Risk:** low; writes require an explicit `--write` style opt-in and inherit all
-  StateGuard preconditions.
+  TheLocalBrainGuard preconditions.
 
-### 3. StateLink MCP Server — *AI/agent surface (flagship)*
+### 3. TheLocalBrain MCP Server — *AI/agent surface (flagship)*
 - **What:** exposes the core to AI agents/tools through MCP tools and resources
   over JSON-RPC, using MCP's client-host-server model. See
   [05-mcp-server.md](05-mcp-server.md) for the deep dive.
@@ -64,7 +64,7 @@ Priority legend:
 
 ## Soon
 
-### 4. StateLink REST Gateway
+### 4. TheLocalBrain REST Gateway
 - **What:** conventional HTTP+JSON over the core; auth, rate limits, and CORS live
   here (never in the core). Maps the error taxonomy to HTTP status codes.
 - **Why soon:** broad reach for dashboards and scripts once the contract is
@@ -72,7 +72,7 @@ Priority legend:
 - **Risk:** introduces network exposure ⇒ auth/authz become a real concern;
   read-only deployments should be trivial to configure.
 
-### 5. StateLink Console (Web UI)
+### 5. TheLocalBrain Console (Web UI)
 - **What:** browse the graph, view notes/attachments, diff proposed changes,
   validate, and (opt-in) perform allow-listed edits — typically atop the REST
   Gateway.
@@ -82,27 +82,27 @@ Priority legend:
 
 ## Later (build on demand)
 
-- **6. StateLink TUI** — terminal explorer/editor for environments without a
+- **6. TheLocalBrain TUI** — terminal explorer/editor for environments without a
   browser.
-- **7. StateLink Live Bus (WebSocket)** — subscriptions and change streaming;
-  depends on a change-detection mechanism (file watch + StateJournal).
-- **8. StateLink RPC Bridge (gRPC)** — typed, high-performance path for internal
+- **7. TheLocalBrain Live Bus (WebSocket)** — subscriptions and change streaming;
+  depends on a change-detection mechanism (file watch + TheLocalBrainJournal).
+- **8. TheLocalBrain RPC Bridge (gRPC)** — typed, high-performance path for internal
   services.
 - **9. StateGraph Interface (GraphQL)** — flexible graph querying; natural fit for
   the typed thought/link graph.
-- **10. StateLink VirtualFS (FUSE)** — presents the interpreted brain as a virtual
+- **10. TheLocalBrain VirtualFS (FUSE)** — presents the interpreted brain as a virtual
   filesystem; read-first, writes much later given the risk.
-- **11. StateLink Version Layer** — git-like diffs/commits/rollback/branches; a
-  *surface over* StateJournal (see [06](06-safety-and-versioning.md)).
+- **11. TheLocalBrain Version Layer** — git-like diffs/commits/rollback/branches; a
+  *surface over* TheLocalBrainJournal (see [06](06-safety-and-versioning.md)).
 - **12. StateQuery Engine** — SQL-like queries/views over the normalized graph.
-- **13. StateLink Event Hooks (Webhooks)** — outbound notifications on change.
+- **13. TheLocalBrain Event Hooks (Webhooks)** — outbound notifications on change.
 
 ## Cross-cutting
 
-### 14. StateLink Extension API (Plugin interface)
+### 14. TheLocalBrain Extension API (Plugin interface)
 - **What:** lets third parties register custom **parsers** (new formats),
   **validators** (extra invariants), and **mutators** (new, opt-in operations) —
-  all of which still pass through StateGuard and the allow-list.
+  all of which still pass through TheLocalBrainGuard and the allow-list.
 - **Why cross-cutting:** it is not a way to *reach* the core; it is a way to
   *extend* the core's adapters/validators. It must not become a back door around
   the safety layer.

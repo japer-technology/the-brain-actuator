@@ -1,7 +1,7 @@
 # 06 — Safety & versioning (shared cross-cutting layers)
 
 Two cross-cutting components live **inside the core** and back every surface:
-**StateGuard** (the policy/safety layer) and **StateJournal** (the audit / diff /
+**TheLocalBrainGuard** (the policy/safety layer) and **TheLocalBrainJournal** (the audit / diff /
 rollback layer). They are documented together because they are what make "one
 core, many surfaces" *safe*: every interface inherits identical guarantees and
 none can bypass them.
@@ -9,9 +9,9 @@ none can bypass them.
 These build directly on [`docs/modifying.md`](../docs/modifying.md) — this
 document is the *scaffolding* view of those rules, not a new policy.
 
-## StateGuard — the policy/safety layer
+## TheLocalBrainGuard — the policy/safety layer
 
-StateGuard is the gatekeeper for **all** writes, from every surface. It
+TheLocalBrainGuard is the gatekeeper for **all** writes, from every surface. It
 implements the three rules from [`docs/modifying.md`](../docs/modifying.md):
 
 1. **Back up before you touch anything** — a verified, restorable backup of the
@@ -24,7 +24,7 @@ implements the three rules from [`docs/modifying.md`](../docs/modifying.md):
 ### Responsibilities
 
 - **Mode enforcement.** A handle is `read-only` unless the caller explicitly
-  opted into writes; StateGuard refuses writes on read-only handles.
+  opted into writes; TheLocalBrainGuard refuses writes on read-only handles.
 - **Precondition pipeline.** Format/version recognized with confidence → app not
   running / no locks / sync idle → backup created and verified → mutation is on
   the allow-list → caller opted in. Any failure aborts with no changes.
@@ -39,15 +39,15 @@ implements the three rules from [`docs/modifying.md`](../docs/modifying.md):
 
 ### Why it must be in the core, not in surfaces
 
-If StateGuard lived in a surface, a second surface could write without it. Putting
+If TheLocalBrainGuard lived in a surface, a second surface could write without it. Putting
 it in the core means a CLI write, a REST write, and an MCP agent write all pass
 through the **same** checks. Surfaces may add *extra* restrictions (e.g. MCP
-read-only-by-default) but can never relax StateGuard.
+read-only-by-default) but can never relax TheLocalBrainGuard.
 
-## StateJournal — the audit / diff / rollback layer
+## TheLocalBrainJournal — the audit / diff / rollback layer
 
-StateJournal records what was attempted and what changed, and provides the basis
-for diffing and rollback. It is the foundation that the (later) **StateLink
+TheLocalBrainJournal records what was attempted and what changed, and provides the basis
+for diffing and rollback. It is the foundation that the (later) **TheLocalBrain
 Version Layer** surface ([03-interfaces.md](03-interfaces.md)) is built on.
 
 ### Responsibilities
@@ -55,7 +55,7 @@ Version Layer** surface ([03-interfaces.md](03-interfaces.md)) is built on.
 - **Operation log.** For every operation (read-significant or write): timestamp,
   session/caller identity, target brain + entities, operation, outcome
   (including refusals and rollbacks).
-- **Backup registry.** Track backups taken by StateGuard and link each write to
+- **Backup registry.** Track backups taken by TheLocalBrainGuard and link each write to
   the backup that protects it, enabling restore.
 - **Diffs.** Before/after representations of allow-listed mutations in terms of
   the normalized model.
@@ -69,23 +69,23 @@ Version Layer** surface ([03-interfaces.md](03-interfaces.md)) is built on.
   endpoint, a CLI `log` command) so operators and agents can see exactly what
   happened.
 - The **Version Layer** surface presents the journal as git-like
-  diffs/commits/rollbacks; it is a *view* over StateJournal, not a second
+  diffs/commits/rollbacks; it is a *view* over TheLocalBrainJournal, not a second
   source of truth.
 
 ## Sync interaction (carried over, applies to all surfaces)
 
 From [`docs/modifying.md`](../docs/modifying.md): until sync bookkeeping is fully
-understood, StateGuard prefers to write only while sync is idle and the app is
+understood, TheLocalBrainGuard prefers to write only while sync is idle and the app is
 closed, lets the app perform the next cloud sync after reopening, and **never
 edits cloud sync state by hand**. If sync semantics are unknown for a
-format/version, that format is **read-only** and StateGuard refuses writes —
+format/version, that format is **read-only** and TheLocalBrainGuard refuses writes —
 regardless of which surface asked.
 
 ## Permissions & authorization (surface vs. core)
 
 A clean division:
 
-- **StateGuard** answers *"is this operation safe for the brain?"* (locks,
+- **TheLocalBrainGuard** answers *"is this operation safe for the brain?"* (locks,
   backups, invariants, allow-list, sync). This is **in the core**.
 - **Authentication/authorization** — *"is this caller allowed to ask?"* — is a
   **surface** concern (REST tokens, MCP transport auth, OS user for CLI). The

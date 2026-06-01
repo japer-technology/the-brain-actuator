@@ -10,8 +10,8 @@ finalized.
 | ID | Decision | Options | Recommendation |
 | --- | --- | --- | --- |
 | **D0** | Adopt "one core coupler, many interfaces"? | yes / no | **Yes** |
-| **D1a** | Name of the core mechanism | StateLink Core / Activator Core / State Coupler / Cortex | **StateLink Core** (fallback: Activator Core) |
-| **D1b** | Name of the MCP surface | StateLink MCP Server / Filesystem Cortex MCP / … | **StateLink MCP Server** |
+| **D1a** | Name of the core mechanism | TheLocalBrain Core / Activator Core / State Coupler / Cortex | **TheLocalBrain Core** (fallback: Activator Core) |
+| **D1b** | Name of the MCP surface | TheLocalBrain MCP Server / Filesystem Cortex MCP / … | **TheLocalBrain MCP Server** |
 | **D1c** | Adopt `<Core> <Surface>` + executable naming scheme | yes / no | **Yes** |
 | **D2a** | Accept the capability model as the single contract | yes / no | **Yes** |
 | **D2b** | Accept the shared lifecycle + error/refusal taxonomy | yes / no | **Yes** |
@@ -22,8 +22,8 @@ finalized.
 | **D5a** | MCP server in launch set | yes / no | **Yes** |
 | **D5b** | MCP read-only by default; write tools opt-in only | yes / no | **Yes** |
 | **D5c** | MCP stdio-only first; defer remote/auth | yes / no | **Yes** |
-| **D6a** | StateGuard a mandatory, un-bypassable in-core gate | yes / no | **Yes** |
-| **D6b** | StateJournal a first-class core component from day one | yes / no | **Yes** |
+| **D6a** | TheLocalBrainGuard a mandatory, un-bypassable in-core gate | yes / no | **Yes** |
+| **D6b** | TheLocalBrainJournal a first-class core component from day one | yes / no | **Yes** |
 | **D6c** | Safety in core, authn/authz in surfaces | yes / no | **Yes** |
 | **D7** | Core runtime/language | see below | **Defer** until after discovery (Phase 1) |
 
@@ -49,13 +49,13 @@ This scaffold slots into [`docs/roadmap.md`](../docs/roadmap.md) without changin
 its safety-first ordering:
 
 - **Phase 0 (now):** agree this decision package (D0–D6); leave D7 open.
-- **Phase 1 (discovery):** the CLI (`statelinkctl`) is the natural driver for the
+- **Phase 1 (discovery):** the CLI (`thelocalbrainctl`) is the natural driver for the
   discovery bootstrap workflow; resolve D7 with real evidence.
 - **Phase 2 (read-only):** ship the SDK + CLI read paths and the **read-only**
   MCP server (resources + read tools).
 - **Phase 3 (projections):** REST Gateway + Console become valuable here.
-- **Phase 4 (safe writes):** StateGuard write pipeline goes live; MCP/CLI/REST
-  write tools are enabled behind opt-in; StateJournal records every write.
+- **Phase 4 (safe writes):** TheLocalBrainGuard write pipeline goes live; MCP/CLI/REST
+  write tools are enabled behind opt-in; TheLocalBrainJournal records every write.
 - **Phase 5 (hardening):** later surfaces (Version Layer, GraphQL, FUSE, Live
   Bus, gRPC, query) built on demand.
 

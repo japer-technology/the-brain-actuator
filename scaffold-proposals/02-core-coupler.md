@@ -7,7 +7,7 @@ the most important decision in the package, because changing it later ripples
 through every surface.
 
 > Throughout this document "the core" / "the coupler" refers to whatever name is
-> chosen in [01-naming.md](01-naming.md) (recommended: *StateLink Core*).
+> chosen in [01-naming.md](01-naming.md) (recommended: *TheLocalBrain Core*).
 
 ## Responsibilities
 
@@ -25,9 +25,9 @@ The core owns, end to end:
 5. **Guarded write services** — the allow-listed mutations from
    [`docs/modifying.md`](../docs/modifying.md), each wrapped in preconditions,
    backup, transaction/round-trip, and post-write validation.
-6. **Safety (StateGuard)** — lock/running-app detection, backup + verify,
+6. **Safety (TheLocalBrainGuard)** — lock/running-app detection, backup + verify,
    pre/post validation, fail-closed enforcement.
-7. **Journaling (StateJournal)** — an operation log and the basis for diffs and
+7. **Journaling (TheLocalBrainJournal)** — an operation log and the basis for diffs and
    rollback.
 
 The core explicitly **excludes** transport, network, auth, and human formatting
