@@ -16,7 +16,7 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "test": "npm run build && node --test \"core/dist/**/*.test.js\"",
+    "test": "npm run build && node --test \"core/dist/**/*.test.js\" \"surfaces/**/dist/**/*.test.js\"",
     "lint": "tsc --build",
     "cli": "node surfaces/cli/dist/bin.js"
   },
