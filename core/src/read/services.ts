@@ -103,6 +103,9 @@ export class ReadServices {
    * REST) responsive for very large graphs.
    */
   async *streamThoughts(pageSize = 500): AsyncGenerator<readonly Thought[]> {
+    if (!Number.isInteger(pageSize) || pageSize <= 0) {
+      throw new RangeError(`pageSize must be a positive integer; got ${pageSize}`);
+    }
     const { thoughts } = await this.data();
     for (let i = 0; i < thoughts.length; i += pageSize) {
       yield thoughts.slice(i, i + pageSize);
