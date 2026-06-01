@@ -40,13 +40,18 @@ async function main(argv: string[]): Promise<number> {
   }
 
   const needsGuid = command === "thought" || command === "note" || command === "neighbors";
+  const isReadCommand = command === "thoughts" || needsGuid;
+
+  if (!isReadCommand) {
+    process.stderr.write(`error: unknown command '${command}'\n\n${USAGE}\n`);
+    return 2;
+  }
   if (needsGuid && guid === undefined) {
     process.stderr.write(`error: '${command}' requires <guid>\n`);
     return 2;
   }
 
   const brain = open(path);
-  try {
     switch (command) {
       case "thoughts": {
         const data = await brain.read.data();
