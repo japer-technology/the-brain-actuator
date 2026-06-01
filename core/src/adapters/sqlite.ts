@@ -177,10 +177,16 @@ export class SqliteAdapter implements StorageAdapter {
   }
 }
 
-/** Whether `path` is a readable SQLite database file. */
 export function looksLikeSqlite(path: string): boolean {
   if (!existsSync(path) || statSync(path).isDirectory()) return false;
-  return /\.(db|sqlite|sqlite3)$/i.test(path);
+  if (!/\.(db|sqlite|sqlite3)$/i.test(path)) return false;
+  try {
+    const db = new Database(path, { readonly: true, fileMustExist: true });
+    db.close();
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function push(map: Map<string, string[]>, key: string, value: string): void {
