@@ -5,6 +5,14 @@ Naming is a decision, not a fact. This document lays out candidate names for the
 to pick a working name now so the rest of the scaffold can refer to concrete
 identifiers; it can be revised before any code is written.
 
+> **Decision (ratified in [QUESTIONS.md](QUESTIONS.md)).** The candidates below
+> are kept for historical context, but the names were resolved as: core =
+> **TheLocalBrain Core**; MCP surface = **TheLocalBrain MCP Server**; safety gate
+> = **TheLocalBrainGuard**; audit/rollback = **TheLocalBrainJournal**; executables
+> follow `thelocalbrain*` (`thelocalbrainctl`, `thelocalbrain-mcp`, …). Where this
+> document still shows `StateLink`/`StateGuard`/`StateJournal`, read them as the
+> ratified `TheLocalBrain*` equivalents.
+
 ## Naming tension to resolve first
 
 There are two naming "worlds" in play:

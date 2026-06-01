@@ -1,0 +1,18 @@
+[
+  {
+    "id": "att00000-0000-0000-0000-000000000001",
+    "thoughtId": "33333333-3333-3333-3333-333333333333",
+    "type": "url",
+    "name": "TheBrain website",
+    "location": "https://www.thebrain.com",
+    "byteCount": null
+  },
+  {
+    "id": "att00000-0000-0000-0000-000000000002",
+    "thoughtId": "33333333-3333-3333-3333-333333333333",
+    "type": "file",
+    "name": "diagram.png",
+    "location": "attachments/diagram.png",
+    "byteCount": 20480
+  }
+]

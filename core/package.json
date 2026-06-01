@@ -1,0 +1,23 @@
+{
+  "name": "@thelocalbrain/core",
+  "version": "0.0.0",
+  "description": "TheLocalBrain Core — the single coupler to TheBrain's on-disk files (discovery, normalized model, read services, guard, journal).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "node --test \"dist/**/*.test.js\""
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0"
+  }
+}

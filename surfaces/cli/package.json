@@ -1,0 +1,16 @@
+{
+  "name": "@thelocalbrain/cli",
+  "version": "0.0.0",
+  "description": "thelocalbrainctl — command-line surface over TheLocalBrain Core (read-only).",
+  "type": "module",
+  "bin": {
+    "thelocalbrainctl": "./dist/bin.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@thelocalbrain/core": "0.0.0"
+  }
+}

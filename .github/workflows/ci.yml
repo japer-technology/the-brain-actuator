@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # One dimension per supported runtime. As real TheBrain formats/versions
+        # are verified (roadmap Phase 1), add a fixture-backed dimension here so
+        # "verified support" is enforced in CI (see scaffold-proposals/04-architecture.md).
+        node: ["20.x", "22.x"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Build all packages
+        run: npm run build
+      - name: Test (core + surfaces against fixtures)
+        run: node --test "core/dist/**/*.test.js" "surfaces/**/dist/**/*.test.js"

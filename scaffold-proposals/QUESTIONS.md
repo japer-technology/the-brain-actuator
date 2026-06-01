@@ -31,7 +31,7 @@ Answer: TheLocalBrain Core
 
 **D1b.** What is the MCP surface's name?
 Suggested: StateLink MCP Server
-Answer: TheLocalBrain PCP Server
+Answer: TheLocalBrain MCP Server
 
 **D1c.** Do we adopt the `<Core> <Surface>` naming convention and the executable
 naming scheme (`statelinkctl`, `statelink-mcp`, …)?
@@ -60,7 +60,7 @@ Answer: Yes
 **D3.** Which interfaces are in the launch set, which are soon, and which are
 later/never?
 Suggested: launch = SDK + CLI + MCP; soon = REST + Console; rest = later
-Answer:
+Answer: launch = SDK + CLI + MCP; soon = REST + Console; rest = later
 
 ## 04 — Architecture
 

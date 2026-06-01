@@ -3,12 +3,15 @@
 A library to **safely discover, read, and (where safe) modify** the on-disk file
 and folder structure of [TheBrain](https://www.thebrain.com).
 
-> **Status:** bootstrap. This repository currently contains documentation only.
-> The documents below describe the intended design so that implementation can
-> proceed against a shared, agreed-upon contract. Any concrete schema details
-> here are **starting hypotheses that must be verified against a real TheBrain
+> **Status:** early implementation (v1, **read-only**). The documents below
+> describe the intended design; the `core/` and `surfaces/` packages implement
+> the read-only vertical slice (discover → read a `.brz`/SQLite brain → expose it
+> over a CLI and an MCP server). Any concrete schema details here remain
+> **starting hypotheses that must be verified against a real TheBrain
 > installation** before code relies on them (see
-> [docs/discovery.md](docs/discovery.md)).
+> [docs/discovery.md](docs/discovery.md)). The bundled test fixtures are
+> **synthetic** (built to those hypotheses), not captures from a real brain —
+> see [fixtures/README.md](fixtures/README.md).
 
 ## Why this exists
 
@@ -56,6 +59,49 @@ data) is something you can read and reuse locally with a stable, documented API.
 | [docs/modifying.md](docs/modifying.md) | Rules and guardrails for safe modification |
 | [docs/architecture.md](docs/architecture.md) | Proposed library layering and components |
 | [docs/roadmap.md](docs/roadmap.md) | Phased delivery plan |
+
+## Implementation (v1, read-only)
+
+A TypeScript/Node monorepo implements the read-only slice of the design above.
+It follows the "one core coupler, many thin surfaces" layout from
+[scaffold-proposals/](scaffold-proposals/):
+
+```text
+core/                 # @thelocalbrain/core — the single coupler (this is the SDK)
+  discovery/          # locate · detect format/version (confidence) · schema probe · report
+  model/              # normalized model (data-model.md) + graph view
+  adapters/           # read-only BrainZip/JSON + SQLite adapters
+  read/               # read services (lookup · context · traversal · streaming)
+  guard/              # TheLocalBrainGuard — mandatory fail-closed safety gate
+  journal/            # TheLocalBrainJournal — operation log
+surfaces/cli/         # thelocalbrainctl — command-line surface
+surfaces/mcp/         # TheLocalBrain MCP Server — read-only, stdio
+fixtures/             # SYNTHETIC sample brains (not real captures)
+```
+
+What is and isn't here, per the [roadmap](docs/roadmap.md):
+
+- **Read-only by default.** Brains open read-only; `read-write` mode is refused.
+  No write tools are registered on the MCP server. Writes (Phase 5) are not
+  implemented; the guard fails closed on every write path.
+- **Fail closed.** Unrecognized formats yield confidence 0 and refuse to open.
+- The live-brain discovery bootstrap (roadmap Phase 1) still needs to run against
+  a real installation to replace the hypotheses in `docs/` with verified facts.
+
+### Build, test, and try it
+
+```sh
+npm install
+npm run build
+npm test            # core + surfaces, tested against fixtures (no real brain needed)
+
+# Inspect a brain (a .brz file, an unpacked export dir, or a SQLite brain folder):
+node surfaces/cli/dist/bin.js discover fixtures/sample.brz
+node surfaces/cli/dist/bin.js thought  fixtures/sample.brz 33333333-3333-3333-3333-333333333333
+
+# Run the read-only MCP server over stdio:
+node surfaces/mcp/dist/server.js fixtures/sample.brz
+```
 
 ## Safety first
 

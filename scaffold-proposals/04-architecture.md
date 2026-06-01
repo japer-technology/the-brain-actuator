@@ -32,7 +32,7 @@ boundaries are open decisions (see [07-decisions.md](07-decisions.md)).
    │   └────────────────┬────────────────────┘                            │
    │                    │                                                  │
    │   ┌────────────────▼─────────┐   ┌───────────────┐  ┌──────────────┐ │
-   │   │ Discovery + StateGuard   │   │  StateJournal │  │ Extension API│ │
+   │   │ Discovery + TheLocalBrainGuard   │   │  TheLocalBrainJournal │  │ Extension API│ │
    │   │ detect·lock·backup·valid │   │ log·diff·undo │  │ parsers/etc. │ │
    │   └────────────────┬─────────┘   └───────────────┘  └──────────────┘ │
    └────────────────────┼──────────────────────────────────────────────--┘
@@ -44,7 +44,7 @@ boundaries are open decisions (see [07-decisions.md](07-decisions.md)).
 
 This is the diagram from [`docs/architecture.md`](../docs/architecture.md) with
 two additions made explicit: a thin **interfaces layer above** the public core
-API, and the **StateJournal** + **Extension API** components beside the existing
+API, and the **TheLocalBrainJournal** + **Extension API** components beside the existing
 discovery/safety layer.
 
 ## Dependency direction (strict)
@@ -54,7 +54,7 @@ discovery/safety layer.
 - Nothing in the core depends on a surface. A surface can be deleted with zero
   changes to the core.
 - The Extension API is the **one** sanctioned way to add adapters/validators/
-  mutators, and its extensions still run **inside** StateGuard.
+  mutators, and its extensions still run **inside** TheLocalBrainGuard.
 
 ## Candidate repository layout
 
@@ -66,26 +66,26 @@ the-brain-actuator/
 ├── docs/                       # existing design docs (unchanged)
 ├── scaffold-proposals/         # this decision package
 └── (proposed, not yet created)
-    ├── core/                   # StateLink Core  (the coupler + SDK)
+    ├── core/                   # TheLocalBrain Core  (the coupler + SDK)
     │   ├── discovery/          # locate + detect format/version
     │   ├── model/              # normalized model (data-model.md)
     │   ├── adapters/           # sqlite/ · brainzip/ · xml/  (+ extension hook)
     │   ├── read/               # read services
     │   ├── write/              # guarded write services (allow-list)
-    │   ├── guard/              # StateGuard: lock/backup/validate/fail-closed
-    │   ├── journal/            # StateJournal: op log · diff · rollback basis
+    │   ├── guard/              # TheLocalBrainGuard: lock/backup/validate/fail-closed
+    │   ├── journal/            # TheLocalBrainJournal: op log · diff · rollback basis
     │   └── extension/          # Extension API surface for plugins
     ├── surfaces/
-    │   ├── cli/                # statelinkctl
-    │   ├── mcp/                # StateLink MCP Server
-    │   ├── rest/               # StateLink REST Gateway
-    │   ├── console/            # StateLink Console (web UI)
-    │   ├── tui/                # StateLink TUI            (later)
+    │   ├── cli/                # thelocalbrainctl
+    │   ├── mcp/                # TheLocalBrain MCP Server
+    │   ├── rest/               # TheLocalBrain REST Gateway
+    │   ├── console/            # TheLocalBrain Console (web UI)
+    │   ├── tui/                # TheLocalBrain TUI            (later)
     │   ├── live-bus/           # WebSocket streaming      (later)
     │   ├── rpc/                # gRPC bridge              (later)
     │   ├── graphql/            # StateGraph Interface     (later)
     │   ├── virtualfs/          # FUSE mount               (later)
-    │   ├── version-layer/      # git-like surface over StateJournal (later)
+    │   ├── version-layer/      # git-like surface over TheLocalBrainJournal (later)
     │   └── query/              # StateQuery Engine        (later)
     └── fixtures/               # captured real-brain fixtures for tests
 ```
@@ -105,7 +105,7 @@ the-brain-actuator/
 ## Cross-cutting concerns (carried from docs/architecture.md)
 
 - **Determinism & idempotency** for writes.
-- **Observability**: a discovery report and an operation log (StateJournal) per
+- **Observability**: a discovery report and an operation log (TheLocalBrainJournal) per
   run, available to every surface.
 - **Capability negotiation** before attempting operations.
 - **No network in the core**; network lives only in surfaces.
