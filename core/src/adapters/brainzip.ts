@@ -328,11 +328,17 @@ export class BrainZipAdapter implements StorageAdapter {
   }
 }
 
-/** Whether `path` looks like a BrainZip export or an unpacked one. */
 export function looksLikeBrainZip(path: string): boolean {
   if (!existsSync(path)) return false;
   if (statSync(path).isDirectory()) {
     return existsSync(join(path, "thoughts.json"));
   }
-  return path.toLowerCase().endsWith(".brz");
+  if (!path.toLowerCase().endsWith(".brz")) return false;
+  try {
+    // Validate that the file is actually a ZIP archive.
+    unzipSync(readFileSync(path));
+    return true;
+  } catch {
+    return false;
+  }
 }
