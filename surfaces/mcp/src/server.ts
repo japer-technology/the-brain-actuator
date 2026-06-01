@@ -155,8 +155,13 @@ async function main(): Promise<void> {
   await server.connect(transport);
 }
 
+const mainPath = process.argv[1];
+const urlPath = decodeURIComponent(new URL(import.meta.url).pathname);
+const normalizedUrlPath =
+  process.platform === "win32" && urlPath.startsWith("/") ? urlPath.slice(1) : urlPath;
+
 // Only run the server when invoked directly (not when imported by tests).
-if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+if (mainPath && normalizedUrlPath === mainPath) {
   main().catch((err: unknown) => {
     process.stderr.write(`fatal: ${err instanceof Error ? err.message : String(err)}\n`);
     process.exit(1);
