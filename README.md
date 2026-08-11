@@ -3,6 +3,9 @@
 A library to **safely discover, read, and (where safe) modify** the on-disk file
 and folder structure of [TheBrain](https://www.thebrain.com).
 
+> [!WARNING]
+> This is pre-alpha. It is not yet conformant or safe for real execution.
+
 > **Status:** early implementation (v1, **read-only**). The documents below
 > describe the intended design; the `core/` and `surfaces/` packages implement
 > the read-only vertical slice (discover → read a `.brz`/SQLite brain → expose it
